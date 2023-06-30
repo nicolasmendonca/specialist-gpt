@@ -6,8 +6,7 @@ import type { RequestHandler } from './$types';
 import { PROMPTS, rolesSchema } from './prompts';
 
 export const config: Config = {
-	runtime: 'edge',
-	external: ['crypto']
+	runtime: "nodejs18.x",
 }
 
 const openAiConfig = new Configuration({
