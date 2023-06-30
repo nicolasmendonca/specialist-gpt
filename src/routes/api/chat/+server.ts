@@ -1,14 +1,19 @@
-import { z } from 'zod';
+import type { Config } from '@sveltejs/adapter-vercel'
 import { Configuration, OpenAIApi } from 'openai-edge';
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { OPENAI_API_KEY } from '$env/static/private';
 import type { RequestHandler } from './$types';
 import { PROMPTS, rolesSchema } from './prompts';
 
-const config = new Configuration({
+export const config: Config = {
+	runtime: 'edge',
+	external: ['crypto']
+}
+
+const openAiConfig = new Configuration({
 	apiKey: OPENAI_API_KEY
 });
-const openai = new OpenAIApi(config);
+const openai = new OpenAIApi(openAiConfig);
 
 export const POST = (async ({ request, url }) => {
 	const role = rolesSchema.parse(url.searchParams.get('role'))
