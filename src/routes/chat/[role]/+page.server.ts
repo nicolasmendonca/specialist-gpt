@@ -13,7 +13,7 @@ export const load = (async (event) => {
 			{
 				id: '1',
 				role: 'assistant',
-				content: `Hi there! I'm your ${role}. I'm glad you're here! How can I help you`,
+				content: `Hi there! I'm your ${role}. I'm glad you're here! How can I help you?`,
 			}
 		]
 
