@@ -7,7 +7,7 @@
 </script>
 
 <div data-theme={data.theme}>
-	<Sidebar>
+	<Sidebar currentPath={data.urlPathname}>
 		<slot />
 	</Sidebar>
 </div>

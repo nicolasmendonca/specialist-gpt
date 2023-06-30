@@ -1,10 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import ThemeChanger from './ThemeChanger.svelte';
 	import { rolesSchema } from './api/chat/prompts';
 
 
-	$: path = $page.url.pathname
+	export let currentPath: string;
 </script>
 
 <div class="drawer drawer-open">
@@ -19,7 +18,7 @@
 			<ul class="menu flex-nowrap flex-grow p-4 w-80 overflow-y-auto">
 				<!-- Sidebar content here -->
 				{#each rolesSchema.options as role}
-					<li><a href="/chat/{role}" class:active={path === `/chat/${role}`} class="capitalize">{role}</a></li>
+					<li><a href="/chat/{role}" class:active={currentPath === `/chat/${role}`} class="capitalize">{role}</a></li>
 				{/each}
 			</ul>
 			<div class="p-4 w-full">

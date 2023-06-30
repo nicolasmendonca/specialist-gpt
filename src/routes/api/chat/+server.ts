@@ -10,8 +10,8 @@ const config = new Configuration({
 });
 const openai = new OpenAIApi(config);
 
-export const POST = (async ({ request, params }) => {
-	const { role } = z.object({ role: rolesSchema }).parse(params)
+export const POST = (async ({ request, url }) => {
+	const role = rolesSchema.parse(url.searchParams.get('role'))
 	const { messages } = await request.json();
 
 	const response = await openai.createChatCompletion({

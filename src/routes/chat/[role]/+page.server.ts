@@ -6,7 +6,7 @@ import { redirect } from '@sveltejs/kit';
 
 export const load = (async (event) => {
 	try {
-
+		
 		const role = rolesSchema.parse(event.params.role);
 		
 		const initialMessages: Message[] = [
@@ -16,10 +16,11 @@ export const load = (async (event) => {
 				content: `Hi there! I'm your ${role}. I'm glad you're here! How can I help you`,
 			}
 		]
+
 		
-		const chatUrl = new URL(event.url)
+		const chatUrl = new URL('/api/chat', event.url.origin)
 		chatUrl.searchParams.append('role', role)
-		
+
 		return {
 			chatUrl: chatUrl.toString(),
 			initialMessages
